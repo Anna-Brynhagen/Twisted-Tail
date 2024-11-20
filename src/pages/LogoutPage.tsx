@@ -14,7 +14,7 @@ const LogoutPage = () => {
   useEffect(() => {
     const logoutUser = async () => {
       await logout();
-      setTimeout(() => navigate('/'), 9000);
+      setTimeout(() => navigate('/'), 2000);
     };
     logoutUser();
   }, [logout, navigate]);

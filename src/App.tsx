@@ -1,11 +1,12 @@
-import { ToastContainer } from 'react-toastify';
 import './assets/scss/app.scss';
-import { Route, Routes } from 'react-router';
-import HomePage from './pages/HomePage';
-import SignupPage from './pages/SignupPage';
 import 'react-toastify/dist/ReactToastify.css';
+import { Route, Routes } from 'react-router';
+import { ToastContainer } from 'react-toastify';
+import HomePage from './pages/HomePage';
 import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
+import ResetPasswordPage from './pages/ResetPasswordPage';
+import SignupPage from './pages/SignupPage';
 
 function App() {
   return (
@@ -16,6 +17,7 @@ function App() {
         <Route path="/signup" element={<SignupPage />} />
         <Route path="/login" element={<LoginPage />} />
         <Route path="/logout" element={<LogoutPage />} />
+        <Route path="/reset-password" element={<ResetPasswordPage />} />
       </Routes>
 
       <ToastContainer

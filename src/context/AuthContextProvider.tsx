@@ -6,6 +6,7 @@ import {
   createUserWithEmailAndPassword,
   User,
   UserCredential,
+  sendPasswordResetEmail,
 } from 'firebase/auth';
 import { auth } from '../services/firebase';
 
@@ -14,6 +15,7 @@ interface AuthContextType {
   signup: (email: string, password: string) => Promise<UserCredential>;
   login: (email: string, password: string) => Promise<UserCredential>;
   logout: () => Promise<void>;
+  resetPassword: (email: string) => Promise<void>;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -32,6 +34,12 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const logout = () => {
     return signOut(auth);
+  };
+
+  const resetPassword = (email: string) => {
+    return sendPasswordResetEmail(auth, email, {
+      url: window.location.origin + '/login',
+    });
   };
 
   useEffect(() => {
@@ -56,6 +64,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
         signup,
         login,
         logout,
+        resetPassword,
       }}
     >
       {children}

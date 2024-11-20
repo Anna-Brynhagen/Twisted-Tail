@@ -92,6 +92,10 @@ const SignupForm: React.FC<SignupFormProps> = ({ handleSignup }) => {
             {isSubmitting ? 'Signing up...' : 'Sign Up'}
           </Button>
         </div>
+
+        <div className="text-center mt-4">
+          Got an account already? <a href="/login">Log in</a>
+        </div>
       </Form>
     </>
   );

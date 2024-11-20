@@ -1,15 +1,16 @@
 import { FirebaseError } from 'firebase/app';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { LoginData } from '../types/User.types';
 import { SubmitHandler, useForm } from 'react-hook-form';
 import { toast } from 'react-toastify';
 import { useState } from 'react';
+import Button from 'react-bootstrap/esm/Button';
 import Card from 'react-bootstrap/esm/Card';
 import Col from 'react-bootstrap/esm/Col';
 import Container from 'react-bootstrap/esm/Container';
 import Form from 'react-bootstrap/esm/Form';
 import Row from 'react-bootstrap/esm/Row';
 import useAuth from '../hooks/useAuth';
-import { LoginData } from '../types/User.types';
 
 const LoginPage = () => {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -88,18 +89,18 @@ const LoginPage = () => {
                     </Form.Text>
                   )}
                 </Form.Group>
-                <div className="d-grid gap-2">
-                  <button
+                <div className="text-center mt-4">
+                  <Button
                     disabled={isSubmitting}
                     type="submit"
                     className="form-button btn btn-success mt-4"
                   >
                     Login
-                  </button>
+                  </Button>
                 </div>
 
                 <div className="text-center mt-4">
-                  <p>Forgot password?</p>
+                  <Link to="/reset-password">Forgot password?</Link>
                 </div>
               </Form>
             </Card.Body>
