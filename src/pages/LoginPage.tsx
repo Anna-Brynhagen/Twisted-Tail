@@ -93,7 +93,7 @@ const LoginPage = () => {
                   <Button
                     disabled={isSubmitting}
                     type="submit"
-                    className="form-button btn btn-success mt-4"
+                    className="form-button btn btn-warning mt-4"
                   >
                     Login
                   </Button>

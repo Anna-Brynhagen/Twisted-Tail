@@ -86,7 +86,7 @@ const SignupForm: React.FC<SignupFormProps> = ({ handleSignup }) => {
         <div className="text-center mt-4">
           <Button
             type="submit"
-            className="form-button btn btn-success mt-4"
+            className="form-button btn btn-warning mt-4"
             disabled={isSubmitting}
           >
             {isSubmitting ? 'Signing up...' : 'Sign Up'}

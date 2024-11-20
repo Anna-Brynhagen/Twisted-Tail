@@ -34,7 +34,7 @@ const LogoutPage = () => {
                   Signing out
                 </Card.Title>
                 <div className="spinner-container mt-4 mb-4">
-                  <PropagateLoader color="#629d4e" />
+                  <PropagateLoader color="#4d0011" />
                 </div>
               </Card.Body>
             </Card>

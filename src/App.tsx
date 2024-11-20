@@ -7,10 +7,13 @@ import LoginPage from './pages/LoginPage';
 import LogoutPage from './pages/LogoutPage';
 import ResetPasswordPage from './pages/ResetPasswordPage';
 import SignupPage from './pages/SignupPage';
+import Navigation from './pages/Navigation';
+import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
     <>
+      <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
         {/* Auth routes */}
@@ -18,6 +21,7 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
+        <Route path="/profile" element={<ProfilePage />} />
       </Routes>
 
       <ToastContainer

@@ -81,18 +81,18 @@ const ForgotPassword = () => {
                   <Button
                     className="form-button btn-success mt-4"
                     type="submit"
-                    variant="primary"
+                    variant="warning"
                     disabled={isSubmitting}
                   >
                     {isSubmitting ? 'Loading...' : 'Send Reset Link'}
                   </Button>
                 </div>
               </Form>
+              <div className="text-center mt-3">
+                <a href="/login">Back to login</a>
+              </div>
             </Card.Body>
           </Card>
-          <div className="text-center mt-3">
-            <a href="/login">Back to login</a>
-          </div>
         </Col>
       </Row>
     </Container>

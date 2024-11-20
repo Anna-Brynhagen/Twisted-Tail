@@ -1,5 +1,64 @@
 @import 'bootstrap/scss/bootstrap';
 
+$theme-colors: (
+  'primary': #4d0011,
+  'secondary': #8eb9ff,
+  'dark': #42354c,
+  'light': #f4f4f4,
+  'success': #6a1d2f,
+  'danger': #f44336,
+  'warning': #013d5a,
+  'muted': #757575,
+  'info': #c3bfd8,
+);
+$card-bg: map-get($theme-colors, 'info');
+$card-color: map-get($theme-colors, 'warning');
+$navbar-dark-bg: map-get($theme-colors, 'primary');
+$navbar-dark-color: map-get($theme-colors, 'secondary');
+$navbar-dark-hover-color: map-get($theme-colors, 'success');
+//Navbar
+.navBar {
+  background-color: $navbar-dark-bg;
+
+  .navbar-toggler {
+    border: 1px solid $navbar-dark-color;
+    transition:
+      background-color 0.3s ease,
+      border-color 0.3s ease;
+    &.collapsed {
+      background-color: lighten($navbar-dark-bg, 5%);
+      border-color: $navbar-dark-color;
+    }
+    &:not(.collapsed) {
+      background-color: #6a1d2f;
+      border-color: $navbar-dark-color;
+    }
+    &:hover {
+      background-color: lighten($navbar-dark-hover-color, 10%);
+    }
+    &:focus,
+    &:active {
+      border-color: $navbar-dark-color;
+      background-color: lighten($navbar-dark-bg, 10%);
+      box-shadow: 0 0 0 0.2rem rgba(155, 70, 31, 0.5);
+    }
+  }
+
+  .navbar-brand {
+    color: $navbar-dark-color;
+    &:hover {
+      color: lighten($navbar-dark-hover-color, 10%);
+    }
+  }
+
+  .nav-link {
+    color: $navbar-dark-color;
+    &:hover {
+      color: lighten($navbar-dark-hover-color, 10%);
+    }
+  }
+}
+
 // LogoutPage
 .spinner-container {
   display: flex;
@@ -10,3 +69,5 @@
 .authCard {
   padding: 1.875rem 0;
 }
+
+@import 'node_modules/bootstrap/scss/bootstrap';
