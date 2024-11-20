@@ -36,7 +36,7 @@ const SignupPage = () => {
         <Col md={{ span: 6, offset: 3 }}>
           <Card>
             <Card.Body>
-              <Card.Title className="text-center">Sign Up</Card.Title>
+              <Card.Title className="text-center">Sign up</Card.Title>
               <SignupForm handleSignup={onSignup} />
             </Card.Body>
           </Card>

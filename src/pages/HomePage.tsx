@@ -3,7 +3,12 @@ import { Link } from 'react-router-dom';
 function HomePage() {
   return (
     <>
-      <Link to="/signup">Sign up</Link>
+      <div>
+        <Link to="/signup">Sign up</Link>
+      </div>
+      <div>
+        <Link to="/login">Login</Link>
+      </div>
     </>
   );
 }
