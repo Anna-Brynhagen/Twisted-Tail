@@ -1,1 +1,12 @@
 @import 'bootstrap/scss/bootstrap';
+
+// LogoutPage
+.spinner-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.authCard {
+  padding: 1.875rem 0;
+}

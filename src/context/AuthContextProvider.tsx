@@ -47,6 +47,8 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     return <div>Loading...</div>;
   }
 
+  console.log(currentUser);
+
   return (
     <AuthContext.Provider
       value={{

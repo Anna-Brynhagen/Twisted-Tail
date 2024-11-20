@@ -9,6 +9,9 @@ function HomePage() {
       <div>
         <Link to="/login">Login</Link>
       </div>
+      <div>
+        <Link to="/logout">Logout</Link>
+      </div>
     </>
   );
 }

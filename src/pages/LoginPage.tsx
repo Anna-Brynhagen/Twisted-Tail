@@ -45,7 +45,11 @@ const LoginPage = () => {
   return (
     <Container className="mt-4 center-y">
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col
+          xs={{ span: 10, offset: 1 }}
+          md={{ span: 8, offset: 2 }}
+          lg={{ span: 6, offset: 3 }}
+        >
           <Card className="shadow">
             <Card.Body>
               <Card.Title className="text-center">Login</Card.Title>

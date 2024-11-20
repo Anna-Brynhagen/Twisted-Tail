@@ -33,7 +33,11 @@ const SignupPage = () => {
   return (
     <Container className="py-3 center-y">
       <Row>
-        <Col md={{ span: 6, offset: 3 }}>
+        <Col
+          xs={{ span: 10, offset: 1 }}
+          md={{ span: 8, offset: 2 }}
+          lg={{ span: 6, offset: 3 }}
+        >
           <Card>
             <Card.Body>
               <Card.Title className="text-center">Sign up</Card.Title>
