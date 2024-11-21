@@ -1,7 +1,13 @@
 import { initializeApp } from 'firebase/app';
-import { getFirestore } from 'firebase/firestore';
+import {
+  collection,
+  CollectionReference,
+  DocumentData,
+  getFirestore,
+} from 'firebase/firestore';
 import { getAuth } from 'firebase/auth';
 import { getStorage } from 'firebase/storage';
+import { ViewUserData } from '../types/User.types';
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
@@ -23,3 +29,11 @@ export const auth = getAuth(app);
 
 //Get firestore storage
 export const storage = getStorage(app);
+
+//helper for adding types to collection
+const createCollection = <T = DocumentData>(collectionName: string) => {
+  return collection(db, collectionName) as CollectionReference<T>;
+};
+
+//create collection for Users
+export const usersCol = createCollection<ViewUserData>('users');

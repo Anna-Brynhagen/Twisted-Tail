@@ -12,3 +12,10 @@ export type LoginData = {
 export type ForgotPasswordData = {
   email: string;
 };
+
+export type ViewUserData = {
+  name: string;
+  email: string;
+  photo: string;
+  highscores: [];
+};
