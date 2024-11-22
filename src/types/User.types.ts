@@ -19,3 +19,12 @@ export type ViewUserData = {
   photo: string;
   highscores: [];
 };
+
+export type UpdateProfileData = {
+  name: string;
+  email: string;
+  photoFiles: FileList;
+  password: string;
+  confirmPassword: string;
+  highscore: [];
+};

@@ -10,7 +10,7 @@ const Navigation = () => {
     <Navbar expand="md" sticky="top" className="navBar">
       <Container>
         <Navbar.Brand as={Link} to="/">
-          Home
+          Twisted Snake
         </Navbar.Brand>
 
         <Navbar.Toggle aria-controls="basic-navbar-nav" />

@@ -8,7 +8,6 @@ import {
   UserCredential,
   sendPasswordResetEmail,
   updateProfile,
-  updateEmail,
   updatePassword,
 } from 'firebase/auth';
 import { auth, usersCol } from '../services/firebase';
@@ -22,7 +21,6 @@ interface AuthContextType {
   resetPassword: (email: string) => Promise<void>;
   setPhotoUrl: (url: string) => Promise<void>;
   setDisplayName: (name: string) => Promise<void>;
-  setEmail: (email: string) => Promise<void>;
   setPassword: (password: string) => Promise<void>;
   userEmail: string | null;
   userName: string | null;
@@ -109,18 +107,6 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     });
   };
 
-  const setEmail = (email: string) => {
-    if (!currentUser) {
-      throw new Error('You must be logged in to update your email');
-    }
-    const docRef = doc(usersCol, currentUser.uid);
-    updateDoc(docRef, {
-      email,
-    });
-
-    return updateEmail(currentUser, email);
-  };
-
   const setPassword = (password: string) => {
     if (!currentUser) {
       throw new Error('You must be logged in to update your password');
@@ -183,7 +169,6 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
         resetPassword,
         setPhotoUrl,
         setDisplayName,
-        setEmail,
         setPassword,
         userEmail,
         userName,

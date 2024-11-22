@@ -12,7 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 
 function App() {
   return (
-    <>
+    <div id="appId">
       <Navigation />
       <Routes>
         <Route path="/" element={<HomePage />} />
@@ -32,7 +32,7 @@ function App() {
         newestOnTop={false}
         closeOnClick
       />
-    </>
+    </div>
   );
 }
 
