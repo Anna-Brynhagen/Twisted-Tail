@@ -1,0 +1,12 @@
+.board-container {
+  text-align: center;
+  margin-top: 50px;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+.canvas-style {
+  outline: 20px solid rgba(23, 49, 105, 0.764);
+  border: 10px solid rgba(225, 86, 86, 0.723);
+  display: inline-block;
+}

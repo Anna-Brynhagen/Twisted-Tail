@@ -17,23 +17,26 @@ const Navigation = () => {
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
             {currentUser ? (
-              <>
+              <div className="collapse-links">
+                <Nav.Link as={Link} to="/game">
+                  Play
+                </Nav.Link>
                 <Nav.Link as={Link} to="/profile">
                   Profile
                 </Nav.Link>
                 <Nav.Link as={Link} to="/logout">
                   Logout
                 </Nav.Link>
-              </>
+              </div>
             ) : (
-              <>
+              <div className="collapse-links">
                 <Nav.Link as={Link} to="/login">
                   Login
                 </Nav.Link>
                 <Nav.Link as={Link} to="/signup">
                   Sign Up
                 </Nav.Link>
-              </>
+              </div>
             )}
           </Nav>
         </Navbar.Collapse>

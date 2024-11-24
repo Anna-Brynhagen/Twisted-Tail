@@ -9,6 +9,7 @@ import ResetPasswordPage from './pages/ResetPasswordPage';
 import SignupPage from './pages/SignupPage';
 import Navigation from './pages/Navigation';
 import ProfilePage from './pages/ProfilePage';
+import GamePage from './pages/GamePage';
 
 function App() {
   return (
@@ -22,6 +23,7 @@ function App() {
         <Route path="/logout" element={<LogoutPage />} />
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ProfilePage />} />
+        <Route path="/game" element={<GamePage />} />
       </Routes>
 
       <ToastContainer

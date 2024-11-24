@@ -1,5 +1,6 @@
 @import 'bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
+@import './gameStyle.scss';
 
 $theme-colors: (
   'primary': #0a355b,
@@ -17,26 +18,31 @@ $card-bg: map-get($theme-colors, 'info');
 $card-color: map-get($theme-colors, 'secondary');
 $navbar-dark-bg: map-get($theme-colors, 'primary');
 $navbar-dark-color: map-get($theme-colors, 'secondary');
-$navbar-dark-hover-color: map-get($theme-colors, 'success');
+$navbar-dark-hover-color: map-get($theme-colors, 'warning');
 //Navbar
 .navBar {
   background-color: $navbar-dark-bg;
   height: 5rem;
   font-size: 1.125rem;
+  position: relative;
+  margin-bottom: 20px;
+
+  .navbar-collapse {
+    z-index: 1049;
+    background-color: $navbar-dark-bg;
+  }
+
+  .collapse-links {
+    display: flex;
+    justify-content: space-evenly;
+  }
 
   .navbar-toggler {
+    background-color: lighten($navbar-dark-bg, 5%);
     border: 1px solid $navbar-dark-color;
     transition:
       background-color 0.3s ease,
       border-color 0.3s ease;
-    &.collapsed {
-      background-color: lighten($navbar-dark-bg, 5%);
-      border-color: $navbar-dark-color;
-    }
-    &:not(.collapsed) {
-      background-color: #6a1d2f;
-      border-color: $navbar-dark-color;
-    }
     &:hover {
       background-color: lighten($navbar-dark-hover-color, 10%);
     }
