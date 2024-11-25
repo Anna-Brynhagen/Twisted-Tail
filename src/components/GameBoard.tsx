@@ -13,19 +13,57 @@ const GameBoard: React.FC = () => {
   const [pulse, setPulse] = useState<number>(1);
   const scale = canvasSize / 30;
 
+  const [direction, setDirection] = useState<'UP' | 'DOWN' | 'LEFT' | 'RIGHT'>(
+    'RIGHT'
+  );
+
   const resizeCanvas = () => {
-    const viewportSize = Math.min(window.innerWidth, window.innerHeight) - 50;
-    const newSize = Math.max(200, viewportSize);
+    const viewportSize = Math.min(window.innerWidth, window.innerHeight) - 150;
+    const newSize = Math.min(700, Math.max(320, viewportSize));
     if (newSize !== canvasSize) {
       setCanvasSize(newSize);
     }
   };
 
+  const handleKeyDown = (event: KeyboardEvent) => {
+    switch (event.key) {
+      case 'ArrowUp':
+        if (direction !== 'DOWN') setDirection('UP');
+        break;
+      case 'ArrowDown':
+        if (direction !== 'UP') setDirection('DOWN');
+        break;
+      case 'ArrowLeft':
+        if (direction !== 'RIGHT') setDirection('LEFT');
+        break;
+      case 'ArrowRight':
+        if (direction !== 'LEFT') setDirection('RIGHT');
+        break;
+    }
+  };
+
   const updateSnakePosition = () => {
     setSnake((prevSnake) => {
-      const newHead = { x: prevSnake[0].x + 1, y: prevSnake[0].y };
-      const newSnake = [newHead, ...prevSnake.slice(0, -1)];
-      return newSnake;
+      const head = prevSnake[0];
+      let newHead;
+
+      switch (direction) {
+        case 'UP':
+          newHead = { x: head.x, y: head.y - 1 };
+          break;
+        case 'DOWN':
+          newHead = { x: head.x, y: head.y + 1 };
+          break;
+        case 'LEFT':
+          newHead = { x: head.x - 1, y: head.y };
+          break;
+        case 'RIGHT':
+          newHead = { x: head.x + 1, y: head.y };
+          break;
+        default:
+          return prevSnake;
+      }
+      return [newHead, ...prevSnake.slice(0, -1)];
     });
   };
 
@@ -53,15 +91,17 @@ const GameBoard: React.FC = () => {
   useEffect(() => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
+    window.addEventListener('keydown', handleKeyDown);
 
     const snakeInterval = setInterval(updateSnakePosition, 300);
     const pulseInterval = setInterval(updatePulse, 50);
     return () => {
       window.removeEventListener('resize', resizeCanvas);
+      window.removeEventListener('keydown', handleKeyDown);
       clearInterval(snakeInterval);
       clearInterval(pulseInterval);
     };
-  }, []);
+  }, [direction]);
 
   useEffect(() => {
     drawBoardAndSnake();
