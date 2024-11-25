@@ -1,4 +1,5 @@
 import { SnakeSegment } from '../types/Snake.types';
+import BodySegment from './BodySegment';
 import Tail from './SnakeTail';
 
 export interface SnakeProps {
@@ -84,19 +85,13 @@ const Snake = {
           secondLastSegment: segments[index - 1],
         });
       } else {
-        // Resten av kroppen.
-        ctx.fillStyle = '#092437';
-        ctx.fillRect(segment.x * scale, segment.y * scale, scale, scale);
-
-        // Smalt streck med pulserande effekt
-        const stripeHeight = scale / 7;
-        ctx.fillStyle = `rgba(182, 79, 76, ${pulse})`;
-        ctx.fillRect(
-          segment.x * scale,
-          segment.y * scale + (scale - stripeHeight) / 2,
+        // Resten av kroppen
+        BodySegment({
+          ctx,
           scale,
-          stripeHeight
-        );
+          segment,
+          pulse,
+        });
       }
     });
   },
