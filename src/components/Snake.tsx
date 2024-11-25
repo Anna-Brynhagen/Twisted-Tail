@@ -1,4 +1,5 @@
 import { SnakeSegment } from '../types/Snake.types';
+import Tail from './SnakeTail';
 
 export interface SnakeProps {
   segments: SnakeSegment[];
@@ -76,13 +77,12 @@ const Snake = {
         ctx.restore();
       } else if (index === segments.length - 1) {
         // Svansen
-        ctx.fillStyle = '#092437';
-        ctx.beginPath();
-        ctx.moveTo(segment.x * scale + scale, segment.y * scale);
-        ctx.lineTo(segment.x * scale + scale, segment.y * scale + scale);
-        ctx.lineTo(segment.x * scale, segment.y * scale + scale / 2);
-        ctx.closePath();
-        ctx.fill();
+        Tail({
+          ctx,
+          scale,
+          lastSegment: segment,
+          secondLastSegment: segments[index - 1],
+        });
       } else {
         // Resten av kroppen.
         ctx.fillStyle = '#092437';
