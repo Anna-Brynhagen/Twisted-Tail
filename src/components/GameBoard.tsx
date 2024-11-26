@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Snake from './Snake';
 import { SnakeSegment } from '../types/Snake.types';
+import Food from './SnakeFood';
 
 const GameBoard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -15,6 +16,13 @@ const GameBoard: React.FC = () => {
 
   const [direction, setDirection] = useState<'UP' | 'DOWN' | 'LEFT' | 'RIGHT'>(
     'RIGHT'
+  );
+
+  const [foodPosition, setFoodPosition] = useState<{ x: number; y: number }>(
+    () => ({
+      x: Math.floor(Math.random() * 30),
+      y: Math.floor(Math.random() * 30),
+    })
   );
 
   const resizeCanvas = () => {
@@ -86,6 +94,7 @@ const GameBoard: React.FC = () => {
     ctx.fillStyle = '#0b5852';
     ctx.fillRect(0, 0, canvasSize, canvasSize);
     Snake.draw(ctx, snake, scale, pulse);
+    Food.draw(ctx, foodPosition, scale);
   };
 
   useEffect(() => {
@@ -105,7 +114,7 @@ const GameBoard: React.FC = () => {
 
   useEffect(() => {
     drawBoardAndSnake();
-  }, [snake, canvasSize, pulse]);
+  }, [snake, canvasSize, pulse, foodPosition]);
 
   return (
     <div className="board-container">
