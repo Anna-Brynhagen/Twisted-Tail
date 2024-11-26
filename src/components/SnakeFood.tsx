@@ -1,15 +1,20 @@
-export interface FoodProps {
-  position: { x: number; y: number };
-  scale: number;
-}
-
-const Food: React.FC<FoodProps> = ({ position, scale }) => {
-  const draw = (ctx: CanvasRenderingContext2D) => {
+const Food = {
+  draw: (
+    ctx: CanvasRenderingContext2D,
+    position: { x: number; y: number },
+    scale: number
+  ) => {
     ctx.fillStyle = 'red';
-    ctx.fillRect(position.x * scale, position.y * scale, scale, scale);
-  };
-
-  return <>{draw}</>;
+    ctx.beginPath();
+    ctx.arc(
+      position.x * scale + scale / 2,
+      position.y * scale + scale / 2,
+      scale / 3,
+      0,
+      2 * Math.PI
+    );
+    ctx.fill();
+  },
 };
 
 export default Food;

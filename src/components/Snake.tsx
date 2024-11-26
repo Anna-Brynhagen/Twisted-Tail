@@ -3,11 +3,6 @@ import BodySegment from './BodySegment';
 import SnakeEyes from './SnakeEyes';
 import Tail from './SnakeTail';
 
-export interface SnakeProps {
-  segments: SnakeSegment[];
-  scale: number;
-}
-
 const Snake = {
   draw: (
     ctx: CanvasRenderingContext2D,
