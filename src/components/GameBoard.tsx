@@ -97,6 +97,21 @@ const GameBoard: React.FC = () => {
     Food.draw(ctx, foodPosition, scale);
   };
 
+  const generateFoodPosition = () => {
+    let newPosition = { x: foodPosition.x, y: foodPosition.y };
+    do {
+      newPosition = {
+        x: Math.floor(Math.random() * 30),
+        y: Math.floor(Math.random() * 30),
+      };
+    } while (
+      snake.some(
+        (segment) => segment.x === newPosition.x && segment.y === newPosition.y
+      )
+    );
+    setFoodPosition(newPosition);
+  };
+
   useEffect(() => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
