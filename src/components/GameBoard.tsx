@@ -71,6 +71,9 @@ const GameBoard: React.FC = () => {
         default:
           return prevSnake;
       }
+      if (newHead.x === foodPosition.x && newHead.y === foodPosition.y) {
+        generateFoodPosition();
+      }
       return [newHead, ...prevSnake.slice(0, -1)];
     });
   };
