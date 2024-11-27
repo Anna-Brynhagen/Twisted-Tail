@@ -114,6 +114,7 @@ const GameBoard: React.FC = () => {
       )
     );
     setFoodPosition(newPosition);
+    SnakeFood.generateNewFood();
   };
 
   useEffect(() => {
