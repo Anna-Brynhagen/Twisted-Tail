@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from 'react';
 import Snake from './Snake';
 import { SnakeSegment } from '../types/Snake.types';
-import Food from './SnakeFood';
+import SnakeFood from './SnakeFood';
 
 const GameBoard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -98,7 +98,7 @@ const GameBoard: React.FC = () => {
     ctx.fillStyle = '#0b5852';
     ctx.fillRect(0, 0, canvasSize, canvasSize);
     Snake.draw(ctx, snake, scale, pulse);
-    Food.draw(ctx, foodPosition, scale);
+    SnakeFood.draw(ctx, foodPosition, scale);
   };
 
   const generateFoodPosition = () => {
