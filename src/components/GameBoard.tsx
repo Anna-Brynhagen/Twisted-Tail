@@ -6,6 +6,7 @@ import SnakeFood from './SnakeFood';
 const GameBoard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvasSize, setCanvasSize] = useState<number>(300);
+  const [score, setScore] = useState<number>(0);
   const [snake, setSnake] = useState<SnakeSegment[]>([
     { x: 5, y: 5 },
     { x: 4, y: 5 },
@@ -73,6 +74,8 @@ const GameBoard: React.FC = () => {
       }
       if (newHead.x === foodPosition.x && newHead.y === foodPosition.y) {
         generateFoodPosition();
+        setScore((prevScore) => prevScore + 1);
+        console.log(score);
         return [newHead, ...prevSnake];
       }
       return [newHead, ...prevSnake.slice(0, -1)];
@@ -135,10 +138,11 @@ const GameBoard: React.FC = () => {
 
   useEffect(() => {
     drawBoardAndSnake();
-  }, [snake, canvasSize, pulse, foodPosition]);
+  }, [snake, canvasSize]);
 
   return (
     <div className="board-container">
+      <div className="score-display">Score: {score}</div>
       <canvas
         className="canvas-style"
         ref={canvasRef}
