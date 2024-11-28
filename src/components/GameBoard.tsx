@@ -2,10 +2,14 @@ import { useEffect, useRef, useState } from 'react';
 import Snake from './Snake';
 import { SnakeSegment } from '../types/Snake.types';
 import SnakeFood from './SnakeFood';
+import { useNavigate } from 'react-router';
+import GameOverModal from './GameOverModal';
 
 const GameBoard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvasSize, setCanvasSize] = useState<number>(300);
+  const navigate = useNavigate();
+  const [isGameOver, setIsGameOver] = useState(false);
   const [score, setScore] = useState<number>(0);
   const [snake, setSnake] = useState<SnakeSegment[]>([
     { x: 5, y: 5 },
@@ -35,6 +39,7 @@ const GameBoard: React.FC = () => {
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
+    if (isGameOver) return;
     switch (event.key) {
       case 'ArrowUp':
         if (direction !== 'DOWN') setDirection('UP');
@@ -52,6 +57,7 @@ const GameBoard: React.FC = () => {
   };
 
   const updateSnakePosition = () => {
+    if (isGameOver) return;
     setSnake((prevSnake) => {
       const head = prevSnake[0];
       let newHead;
@@ -72,10 +78,20 @@ const GameBoard: React.FC = () => {
         default:
           return prevSnake;
       }
+
+      if (
+        newHead.x < 0 ||
+        newHead.x >= canvasSize / scale ||
+        newHead.y < 0 ||
+        newHead.y >= canvasSize / scale
+      ) {
+        handleGameOver();
+        return prevSnake;
+      }
+
       if (newHead.x === foodPosition.x && newHead.y === foodPosition.y) {
         generateFoodPosition();
         setScore((prevScore) => prevScore + 1);
-        console.log(score);
         return [newHead, ...prevSnake];
       }
       return [newHead, ...prevSnake.slice(0, -1)];
@@ -125,23 +141,58 @@ const GameBoard: React.FC = () => {
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('keydown', handleKeyDown);
-
-    const snakeInterval = setInterval(updateSnakePosition, 300);
+    let snakeInterval: NodeJS.Timeout | null = null;
+    if (!isGameOver) {
+      console.log('Starting snake update interval');
+      snakeInterval = setInterval(() => {
+        console.log('Updating snake position');
+        updateSnakePosition();
+      }, 300);
+    }
     const pulseInterval = setInterval(updatePulse, 50);
     return () => {
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('keydown', handleKeyDown);
-      clearInterval(snakeInterval);
+      if (snakeInterval) {
+        console.log('Clearing snake update interval');
+        clearInterval(snakeInterval);
+      }
       clearInterval(pulseInterval);
     };
-  }, [direction]);
+  }, [direction, isGameOver]);
 
   useEffect(() => {
     drawBoardAndSnake();
   }, [snake, canvasSize]);
 
+  const handleGameOver = () => {
+    setIsGameOver(true);
+  };
+
+  const resetGame = () => {
+    setIsGameOver(false);
+    setSnake([
+      { x: 5, y: 5 },
+      { x: 4, y: 5 },
+      { x: 3, y: 5 },
+    ]);
+    setScore(0);
+    setDirection('RIGHT');
+    generateFoodPosition();
+  };
+
+  const navigateHome = () => {
+    navigate('/');
+  };
+
   return (
     <div className="board-container">
+      <GameOverModal
+        show={isGameOver}
+        score={score}
+        onPlayAgain={resetGame}
+        onGoHome={navigateHome}
+      />
       <div className="score-display">Score: {score}</div>
       <canvas
         className="canvas-style"

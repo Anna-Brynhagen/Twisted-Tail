@@ -1,7 +1,7 @@
 import { SnakeSegment } from '../types/Snake.types';
-import BodySegment from './BodySegment';
-import SnakeEyes from './SnakeEyes';
-import Tail from './SnakeTail';
+import BodySegment from './snakeBodyParts/BodySegment';
+import SnakeEyes from './snakeBodyParts/SnakeEyes';
+import Tail from './snakeBodyParts/SnakeTail';
 
 const Snake = {
   draw: (
