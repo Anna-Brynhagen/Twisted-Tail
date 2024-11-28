@@ -1,12 +1,14 @@
 import Apple from './foodItems/Apple';
 import Banana from './foodItems/Banana';
+import Mouse from './foodItems/Mouse';
 
-const FoodTypes = [Apple, Banana];
+const FoodTypes = [Apple, Banana, Mouse];
 let currentFoodType = FoodTypes[0];
 
 const SnakeFood = {
   generateNewFood: () => {
     currentFoodType = FoodTypes[Math.floor(Math.random() * FoodTypes.length)];
+    console.log('hi');
   },
   draw: (
     ctx: CanvasRenderingContext2D,
