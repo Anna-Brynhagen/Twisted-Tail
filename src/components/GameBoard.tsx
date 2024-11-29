@@ -1,9 +1,10 @@
-import { useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
 import Snake from './Snake';
 import { SnakeSegment } from '../types/Snake.types';
 import SnakeFood from './SnakeFood';
 import { useNavigate } from 'react-router';
 import GameOverModal from './GameOverModal';
+import Countdown from './CountDown';
 
 const GameBoard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -18,6 +19,11 @@ const GameBoard: React.FC = () => {
   ]);
   const [pulse, setPulse] = useState<number>(1);
   const scale = canvasSize / 30;
+  const [isCountingDown, setIsCountingDown] = useState(true);
+
+  const startGame = useCallback(() => {
+    setIsCountingDown(false);
+  }, []);
 
   const [direction, setDirection] = useState<'UP' | 'DOWN' | 'LEFT' | 'RIGHT'>(
     'RIGHT'
@@ -179,6 +185,7 @@ const GameBoard: React.FC = () => {
 
   const resetGame = () => {
     setIsGameOver(false);
+    setIsCountingDown(true);
     setSnake([
       { x: 5, y: 5 },
       { x: 4, y: 5 },
@@ -195,21 +202,26 @@ const GameBoard: React.FC = () => {
 
   return (
     <div className="board-container">
-      <GameOverModal
-        show={isGameOver}
-        score={score}
-        onPlayAgain={resetGame}
-        onGoHome={navigateHome}
-      />
-      <div className="score-display">Score: {score}</div>
-      <canvas
-        className="canvas-style"
-        ref={canvasRef}
-        style={{
-          width: `${canvasSize}px`,
-          height: `${canvasSize}px`,
-        }}
-      ></canvas>
+      {isCountingDown && <Countdown onCountdownComplete={startGame} />}
+      {!isCountingDown && (
+        <>
+          <GameOverModal
+            show={isGameOver}
+            score={score}
+            onPlayAgain={resetGame}
+            onGoHome={navigateHome}
+          />
+          <div className="score-display">Score: {score}</div>
+          <canvas
+            className="canvas-style"
+            ref={canvasRef}
+            style={{
+              width: `${canvasSize}px`,
+              height: `${canvasSize}px`,
+            }}
+          ></canvas>
+        </>
+      )}
     </div>
   );
 };

@@ -1,12 +1,34 @@
 .board-container {
   text-align: center;
-  margin-top: 50px;
-  padding: 0 20px;
+  margin-top: 2.125rem;
+  padding: 0 1.25rem;
   box-sizing: border-box;
 }
 
 .canvas-style {
-  outline: 20px solid rgba(23, 49, 105, 0.764);
-  border: 10px solid rgba(225, 86, 86, 0.723);
+  outline: 1.25rem solid rgba(23, 49, 105, 0.764);
+  border: 0.625rem solid rgba(225, 86, 86, 0.723);
   display: inline-block;
+}
+
+.countdown-wrapper {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 12.5rem;
+  height: 12.5rem;
+  background-color: #0b5852;
+  border-radius: 1.25rem;
+  box-shadow: 0 0 1.25rem rgba(255, 165, 0, 0.8);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.countdown-container h1 {
+  color: rgb(230, 212, 50);
+  font-size: 6rem;
+  text-align: center;
+  margin: 0;
 }
