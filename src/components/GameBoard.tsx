@@ -89,6 +89,14 @@ const GameBoard: React.FC = () => {
         return prevSnake;
       }
 
+      const collisionWithSelf = prevSnake.some(
+        (segment) => segment.x === newHead.x && segment.y === newHead.y
+      );
+      if (collisionWithSelf) {
+        handleGameOver();
+        return prevSnake;
+      }
+
       if (newHead.x === foodPosition.x && newHead.y === foodPosition.y) {
         generateFoodPosition();
         setScore((prevScore) => prevScore + 1);
