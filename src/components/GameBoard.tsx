@@ -22,6 +22,7 @@ const GameBoard: React.FC = () => {
   const scale = canvasSize / 30;
   const [isCountingDown, setIsCountingDown] = useState(true);
   const { addHighscore } = useAuth();
+  const [lastMoveTime, setLastMoveTime] = useState<number>(0);
 
   const startGame = useCallback(() => {
     setIsCountingDown(false);
@@ -47,7 +48,11 @@ const GameBoard: React.FC = () => {
   };
 
   const handleKeyDown = (event: KeyboardEvent) => {
-    if (isGameOver) return;
+    const now = Date.now();
+    const moveInterval = 200;
+
+    if (isGameOver || now - lastMoveTime < moveInterval) return;
+    setLastMoveTime(now);
     switch (event.key) {
       case 'ArrowUp':
         if (direction !== 'DOWN') setDirection('UP');
@@ -150,7 +155,6 @@ const GameBoard: React.FC = () => {
     );
     setFoodPosition(newPosition);
     SnakeFood.generateNewFood();
-    console.log(SnakeFood);
   };
 
   useEffect(() => {
@@ -163,17 +167,16 @@ const GameBoard: React.FC = () => {
       snakeInterval = setInterval(() => {
         console.log('Updating snake position');
         updateSnakePosition();
+        updatePulse();
       }, 200);
     }
-    const pulseInterval = setInterval(updatePulse, 50);
     return () => {
+      console.log('Cleaning up');
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('keydown', handleKeyDown);
       if (snakeInterval) {
-        console.log('Clearing snake update interval');
         clearInterval(snakeInterval);
       }
-      clearInterval(pulseInterval);
     };
   }, [direction, isGameOver]);
 
