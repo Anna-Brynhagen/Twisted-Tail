@@ -28,6 +28,7 @@ interface AuthContextType {
   userPhotoUrl: string | null;
   reloadUser: () => boolean;
   addHighscore: (score: number) => Promise<void>;
+  getHighscores: () => Promise<number[]>;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -139,6 +140,23 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     });
   };
 
+  const getHighscores = async (): Promise<number[]> => {
+    if (!currentUser) {
+      throw new Error('You must be logged in to view highscores');
+    }
+
+    const docRef = doc(usersCol, currentUser.uid);
+    const userDoc = await getDoc(docRef);
+
+    if (!userDoc.exists()) {
+      console.log('No highscores found for this user.');
+      return [];
+    }
+
+    const userData = userDoc.data() as ViewUserData;
+    return userData.highscores || [];
+  };
+
   const reloadUser = () => {
     if (!currentUser) {
       return false;
@@ -189,6 +207,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
         userPhotoUrl,
         reloadUser,
         addHighscore,
+        getHighscores,
       }}
     >
       {children}
