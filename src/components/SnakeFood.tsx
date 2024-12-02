@@ -8,7 +8,6 @@ let currentFoodType = FoodTypes[0];
 const SnakeFood = {
   generateNewFood: () => {
     currentFoodType = FoodTypes[Math.floor(Math.random() * FoodTypes.length)];
-    console.log('hi');
   },
   draw: (
     ctx: CanvasRenderingContext2D,

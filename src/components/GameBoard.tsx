@@ -5,6 +5,7 @@ import SnakeFood from './SnakeFood';
 import { useNavigate } from 'react-router';
 import GameOverModal from './GameOverModal';
 import Countdown from './CountDown';
+import useAuth from '../hooks/useAuth';
 
 const GameBoard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -20,6 +21,7 @@ const GameBoard: React.FC = () => {
   const [pulse, setPulse] = useState<number>(1);
   const scale = canvasSize / 30;
   const [isCountingDown, setIsCountingDown] = useState(true);
+  const { addHighscore } = useAuth();
 
   const startGame = useCallback(() => {
     setIsCountingDown(false);
@@ -161,7 +163,7 @@ const GameBoard: React.FC = () => {
       snakeInterval = setInterval(() => {
         console.log('Updating snake position');
         updateSnakePosition();
-      }, 300);
+      }, 200);
     }
     const pulseInterval = setInterval(updatePulse, 50);
     return () => {
@@ -179,8 +181,14 @@ const GameBoard: React.FC = () => {
     drawBoardAndSnake();
   }, [snake, canvasSize]);
 
-  const handleGameOver = () => {
+  const handleGameOver = async () => {
     setIsGameOver(true);
+
+    try {
+      await addHighscore(score);
+    } catch (error) {
+      console.error('Error saving highscore:', error);
+    }
   };
 
   const resetGame = () => {
