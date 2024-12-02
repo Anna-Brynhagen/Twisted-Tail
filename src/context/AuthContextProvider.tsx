@@ -11,7 +11,8 @@ import {
   updatePassword,
 } from 'firebase/auth';
 import { auth, usersCol } from '../services/firebase';
-import { arrayUnion, doc, setDoc, updateDoc } from '@firebase/firestore';
+import { doc, getDoc, setDoc, updateDoc } from '@firebase/firestore';
+import { ViewUserData } from '../types/User.types';
 
 interface AuthContextType {
   currentUser: User | null;
@@ -116,12 +117,25 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
 
   const addHighscore = async (score: number) => {
     if (!currentUser) {
-      throw new Error('You must be logged in to view highscore');
+      throw new Error('You must be logged in to update highscore');
     }
 
     const docRef = doc(usersCol, currentUser.uid);
-    return updateDoc(docRef, {
-      highscores: arrayUnion(score),
+    const userDoc = await getDoc(docRef);
+
+    if (!userDoc.exists()) {
+      throw new Error('User document does not exist');
+    }
+
+    const userData = userDoc.data() as ViewUserData;
+    const currentHighscores = userData.highscores || [];
+
+    const updatedHighscores = [...currentHighscores, score]
+      .sort((a, b) => b - a)
+      .slice(0, 3);
+
+    await updateDoc(docRef, {
+      highscores: updatedHighscores,
     });
   };
 
