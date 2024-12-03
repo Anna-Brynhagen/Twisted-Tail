@@ -158,6 +158,7 @@ const GameBoard: React.FC = () => {
   };
 
   useEffect(() => {
+    if (isCountingDown) return;
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
     window.addEventListener('keydown', handleKeyDown);
@@ -178,7 +179,7 @@ const GameBoard: React.FC = () => {
         clearInterval(snakeInterval);
       }
     };
-  }, [direction, isGameOver]);
+  }, [direction, isGameOver, isCountingDown]);
 
   useEffect(() => {
     drawBoardAndSnake();
