@@ -11,7 +11,7 @@ import {
   updatePassword,
 } from 'firebase/auth';
 import { auth, usersCol } from '../services/firebase';
-import { doc, getDoc, setDoc, updateDoc } from '@firebase/firestore';
+import { doc, getDoc, getDocs, setDoc, updateDoc } from '@firebase/firestore';
 import { ViewUserData } from '../types/User.types';
 
 interface AuthContextType {
@@ -28,7 +28,9 @@ interface AuthContextType {
   userPhotoUrl: string | null;
   reloadUser: () => boolean;
   addHighscore: (score: number) => Promise<void>;
-  getHighscores: () => Promise<number[]>;
+  fetchHighestHighscores: () => Promise<
+    { name: string; highestScore: number; photo?: string }[]
+  >;
 }
 
 export const AuthContext = createContext<AuthContextType | null>(null);
@@ -140,21 +142,24 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
     });
   };
 
-  const getHighscores = async (): Promise<number[]> => {
-    if (!currentUser) {
-      throw new Error('You must be logged in to view highscores');
-    }
+  const fetchHighestHighscores = async (): Promise<
+    { name: string; highestScore: number; photo?: string }[]
+  > => {
+    const snapshot = await getDocs(usersCol);
+    const highestHighscores = snapshot.docs
+      .map((doc) => {
+        const data = doc.data() as ViewUserData;
+        const scores = data.highscores || [];
+        return {
+          name: data.name || 'Anonymous',
+          highestScore: scores.length > 0 ? Math.max(...scores) : 0,
+          photo: data.photo || undefined,
+        };
+      })
+      .filter((user) => user.highestScore > 0)
+      .sort((a, b) => b.highestScore - a.highestScore);
 
-    const docRef = doc(usersCol, currentUser.uid);
-    const userDoc = await getDoc(docRef);
-
-    if (!userDoc.exists()) {
-      console.log('No highscores found for this user.');
-      return [];
-    }
-
-    const userData = userDoc.data() as ViewUserData;
-    return userData.highscores || [];
+    return highestHighscores;
   };
 
   const reloadUser = () => {
@@ -205,7 +210,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
         userPhotoUrl,
         reloadUser,
         addHighscore,
-        getHighscores,
+        fetchHighestHighscores,
       }}
     >
       {children}

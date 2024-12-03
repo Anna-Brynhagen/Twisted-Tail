@@ -10,6 +10,7 @@ import SignupPage from './pages/SignupPage';
 import Navigation from './pages/Navigation';
 import ProfilePage from './pages/ProfilePage';
 import GamePage from './pages/GamePage';
+import HighscorePage from './pages/HighscorePage';
 
 function App() {
   return (
@@ -24,6 +25,7 @@ function App() {
         <Route path="/reset-password" element={<ResetPasswordPage />} />
         <Route path="/profile" element={<ProfilePage />} />
         <Route path="/game" element={<GamePage />} />
+        <Route path="/highscore" element={<HighscorePage />} />
       </Routes>
 
       <ToastContainer

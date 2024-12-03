@@ -28,3 +28,9 @@ export type UpdateProfileData = {
   confirmPassword: string;
   highscore: [];
 };
+
+export type PlayerHighscore = {
+  name: string;
+  highestScore: number;
+  photo?: string;
+};
