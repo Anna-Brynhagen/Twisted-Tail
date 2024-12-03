@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
 @import './gameStyle.scss';
 @import './gameOverStyle.scss';
+@import './highscoreStyle.scss';
 
 $theme-colors: (
   'primary': #0a355b,
@@ -80,7 +81,7 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
   background-position: center;
 }
 
-// LogoutPage
+// LoadingScreen
 .spinner-container {
   display: flex;
   justify-content: center;

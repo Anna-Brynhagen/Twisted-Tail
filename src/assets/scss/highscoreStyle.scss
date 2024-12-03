@@ -1,0 +1,32 @@
+//highscore Page
+.highscore-page {
+  padding: 1.25rem;
+}
+
+.highscore-page h1 {
+  color: #ffeeba;
+}
+
+.shadow-sm {
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.thumbnail {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.default-avatar {
+  width: 2.5rem;
+  height: 2.5rem;
+  border-radius: 50%;
+  background-color: #ccc;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  font-weight: bold;
+}
