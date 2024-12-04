@@ -1,42 +1,33 @@
-import { useEffect, useState } from 'react';
 import { Table, Container, Card } from 'react-bootstrap';
-import useAuth from '../hooks/useAuth';
-import { PlayerHighscore } from '../types/User.types';
 import LoadingScreen from '../components/LoadingScreen';
+import useGetUsersInfo from '../hooks/useGetUsersInfo';
+import { ViewUserData } from '../types/User.types';
 
 const HighscorePage: React.FC = () => {
-  const [highscores, setHighscores] = useState<PlayerHighscore[]>([]);
-  const [loading, setLoading] = useState<boolean>(true);
-  const { fetchHighestHighscores } = useAuth();
+  const { data: users, loading } = useGetUsersInfo();
 
-  useEffect(() => {
-    const loadHighscores = async () => {
-      setLoading(true);
-      try {
-        const scores = await fetchHighestHighscores();
-        setHighscores(scores);
-      } catch (error) {
-        console.error('Failed to load highscores:', error);
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    loadHighscores();
-  }, [fetchHighestHighscores]);
+  const highscores = users
+    ?.filter(
+      (user: ViewUserData) => user.highscores && user.highscores.length > 0
+    )
+    .map((user: ViewUserData) => ({
+      name: user.name || 'Anonymous',
+      highestScore: Math.max(...(user.highscores || [])),
+      photo: user.photo || undefined,
+    }))
+    .sort((a, b) => b.highestScore - a.highestScore);
 
   return (
     <Container className="highscore-page mt-5">
-      <Card className="shadow-sm p-4 mb-4">
-        <h1 className="text-center mb-4">Highscore Leaderboard</h1>
-        {loading ? (
-          <LoadingScreen
-            message="Fetching Highscores..."
-            color="#4d0011"
-            minimumDelay={1000}
-            onComplete={() => setLoading(false)}
-          />
-        ) : (
+      {loading ? (
+        <LoadingScreen
+          message="Fetching Highscores..."
+          color="#4d0011"
+          minimumDelay={1000}
+        />
+      ) : (
+        <Card className="shadow-sm p-4 mb-4">
+          <h1 className="text-center mb-4">Highscore Leaderboard</h1>
           <Table bordered hover responsive="md" className="highscore-table">
             <thead>
               <tr className="text-center">
@@ -46,7 +37,7 @@ const HighscorePage: React.FC = () => {
               </tr>
             </thead>
             <tbody>
-              {highscores.length > 0 ? (
+              {highscores && highscores.length > 0 ? (
                 highscores.map((player, index) => (
                   <tr key={index}>
                     <td className="text-center">{index + 1}</td>
@@ -78,8 +69,8 @@ const HighscorePage: React.FC = () => {
               )}
             </tbody>
           </Table>
-        )}
-      </Card>
+        </Card>
+      )}
     </Container>
   );
 };
