@@ -142,17 +142,28 @@ const GameBoard: React.FC = () => {
   };
 
   const generateFoodPosition = () => {
-    let newPosition = { x: foodPosition.x, y: foodPosition.y };
-    do {
-      newPosition = {
-        x: Math.floor(Math.random() * 30),
-        y: Math.floor(Math.random() * 30),
-      };
-    } while (
-      snake.some(
-        (segment) => segment.x === newPosition.x && segment.y === newPosition.y
-      )
+    const gridSize = 30;
+    const allPositions = [];
+
+    for (let x = 0; x < gridSize; x++) {
+      for (let y = 0; y < gridSize; y++) {
+        allPositions.push({ x, y });
+      }
+    }
+
+    const availablePositions = allPositions.filter(
+      (pos) =>
+        !snake.some((segment) => segment.x === pos.x && segment.y === pos.y)
     );
+
+    if (availablePositions.length === 0) {
+      console.warn('No available positions for food!');
+      return;
+    }
+
+    const newPosition =
+      availablePositions[Math.floor(Math.random() * availablePositions.length)];
+
     setFoodPosition(newPosition);
     SnakeFood.generateNewFood();
   };
