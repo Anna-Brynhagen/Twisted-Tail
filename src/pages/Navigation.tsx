@@ -36,6 +36,9 @@ const Navigation = () => {
                 <Nav.Link as={Link} to="/login">
                   Login
                 </Nav.Link>
+                <Nav.Link as={Link} to="/game">
+                  Play
+                </Nav.Link>
                 <Nav.Link as={Link} to="/highscore">
                   Highscore
                 </Nav.Link>

@@ -8,13 +8,13 @@
 $theme-colors: (
   'primary': #0a355b,
   'secondary': #d1d1af,
-  'dark': #42354c,
+  'dark': #1c1a1f,
   'light': #f4f4f4,
   'success': #8c2039,
   'danger': #eb9690,
   'warning': #156e6d,
   'muted': #757575,
-  'info': #0a355bdb,
+  'info': #0a355be0,
 );
 
 $card-bg: map-get($theme-colors, 'info');
@@ -25,8 +25,8 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
 //Navbar
 .navBar {
   background-color: $navbar-dark-bg;
-  height: 5rem;
-  font-size: 1.125rem;
+  height: 6rem;
+  font-size: 1.2rem;
   position: relative;
   margin-bottom: 20px;
 
@@ -60,26 +60,25 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
   .navbar-brand {
     color: $navbar-dark-color;
     font-size: 40px;
-    &:hover {
-      color: lighten($navbar-dark-hover-color, 10%);
-    }
-  }
-
-  .nav-link {
-    color: $navbar-dark-color;
-    &:hover {
-      color: lighten($navbar-dark-hover-color, 10%);
-    }
   }
 }
 
-// application background och font
+// application background and font
 #appId {
   min-height: 100vh;
   font-family: 'Jaro', sans-serif;
   background-image: url('../images/snake background.jpg');
   background-size: cover;
   background-position: center;
+}
+
+#appId a {
+  color: #d1d1af;
+  text-decoration: none;
+}
+
+#appId a:hover {
+  color: #c9c975;
 }
 
 // LoadingScreen

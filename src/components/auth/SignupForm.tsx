@@ -93,8 +93,10 @@ const SignupForm: React.FC<SignupFormProps> = ({ handleSignup }) => {
           </Button>
         </div>
 
-        <div className="text-center mt-4">
-          Got an account already? <a href="/login">Log in</a>
+        <div className="text-center">
+          <p className="mt-2">
+            Got an account already? <br /> <a href="/login">Log in</a>
+          </p>
         </div>
       </Form>
     </>

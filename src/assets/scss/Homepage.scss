@@ -1,35 +1,33 @@
-.homepage-container {
-  padding-bottom: 6.25rem;
+.homePage-container {
+  padding-top: 1.5rem;
 }
 
 .h1-title {
-  color: #0a355b;
-  text-shadow: 0 0 5px #d1d1af;
+  color: #8c2039;
+  text-shadow: 0 0 5px #1c1a1f;
   font-size: 4.5rem;
 }
 
 .h3-title {
-  color: #0a355b;
-  text-shadow: 0 0 5px #d1d1af;
+  color: #297cac;
+  text-shadow: 0 0 5px #1c1a1f;
   font-size: 2.5rem;
 }
 
 .game-description {
-  font-size: 1.3rem;
+  font-size: 1.7rem;
   color: antiquewhite;
 }
 
 .game-rules {
-  font-size: 1.5rem;
-
-  color: #ff0000;
-  text-shadow: 0 0 5px rgba(12, 12, 11, 0.8);
+  font-size: 1.7rem;
+  color: antiquewhite;
 }
 
 .game-over-text {
-  font-size: 2rem;
+  font-size: 2.5rem;
   font-weight: bold;
-  color: #ff0000;
-  text-shadow: 0 0 5px rgba(12, 12, 11, 0.8);
+  color: #b1173b;
+  text-shadow: 0 0 5px #1c1a1f;
   font-family: 'Creepster', cursive;
 }
