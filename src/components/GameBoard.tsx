@@ -51,6 +51,12 @@ const GameBoard: React.FC = () => {
     const now = Date.now();
     const moveInterval = 200;
 
+    if (
+      ['ArrowUp', 'ArrowDown', 'ArrowLeft', 'ArrowRight'].includes(event.key)
+    ) {
+      event.preventDefault();
+    }
+
     if (isGameOver || now - lastMoveTime < moveInterval) return;
     setLastMoveTime(now);
     switch (event.key) {
@@ -94,9 +100,9 @@ const GameBoard: React.FC = () => {
 
       if (
         newHead.x < 0 ||
-        newHead.x >= canvasSize / scale ||
+        newHead.x >= Math.floor(canvasSize / scale) ||
         newHead.y < 0 ||
-        newHead.y >= canvasSize / scale
+        newHead.y >= Math.floor(canvasSize / scale)
       ) {
         handleGameOver();
         return prevSnake;
