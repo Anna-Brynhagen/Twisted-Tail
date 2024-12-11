@@ -229,6 +229,29 @@ const GameBoard: React.FC = () => {
     navigate('/');
   };
 
+  const handleTouch = (event: React.TouchEvent<HTMLCanvasElement>) => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const rect = canvas.getBoundingClientRect();
+    const touchX = event.touches[0].clientX - rect.left;
+    const touchY = event.touches[0].clientY - rect.top;
+    const head = snake[0];
+    const scale = canvasSize / 30;
+    const snakeX = head.x * scale + scale / 2;
+    const snakeY = head.y * scale + scale / 2;
+    const deltaX = touchX - snakeX;
+    const deltaY = touchY - snakeY;
+
+    if (Math.abs(deltaX) > Math.abs(deltaY)) {
+      if (deltaX > 0 && direction !== 'LEFT') setDirection('RIGHT');
+      else if (deltaX < 0 && direction !== 'RIGHT') setDirection('LEFT');
+    } else {
+      if (deltaY > 0 && direction !== 'UP') setDirection('DOWN');
+      else if (deltaY < 0 && direction !== 'DOWN') setDirection('UP');
+    }
+  };
+
   return (
     <div className="board-container">
       {isCountingDown && <Countdown onCountdownComplete={startGame} />}
@@ -244,9 +267,11 @@ const GameBoard: React.FC = () => {
           <canvas
             className="canvas-style"
             ref={canvasRef}
+            onTouchStart={handleTouch}
             style={{
               width: `${canvasSize}px`,
               height: `${canvasSize}px`,
+              touchAction: 'none',
             }}
           ></canvas>
         </>
