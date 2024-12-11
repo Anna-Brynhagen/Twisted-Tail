@@ -1,14 +1,12 @@
 .board-container {
   text-align: center;
-  margin-top: 2.125rem;
+  margin-top: 2rem;
   padding: 0 1.25rem;
   box-sizing: border-box;
-  min-height: 100vh;
 }
 
 .canvas-style {
-  outline: 1.25rem solid rgba(23, 49, 105, 0.764);
-  border: 0.625rem solid rgba(225, 86, 86, 0.723);
+  border: 0.625rem solid #d1d1af;
   display: inline-block;
 }
 
@@ -32,4 +30,29 @@
   font-size: 6rem;
   text-align: center;
   margin: 0;
+}
+
+.score-label {
+  color: antiquewhite;
+  text-transform: uppercase;
+  font-size: 2rem;
+}
+
+.score-value {
+  color: #28a745;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.score-card {
+  margin: 0 auto;
+  text-align: center;
+  max-width: 53.125rem;
+  min-width: 21.875rem;
+}
+
+.canvas-style {
+  display: block;
+  margin: 0 auto;
+  margin-bottom: 2.5rem;
 }

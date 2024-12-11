@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router';
 import GameOverModal from './GameOverModal';
 import Countdown from './CountDown';
 import useAuth from '../hooks/useAuth';
+import { Card } from 'react-bootstrap';
 
 const GameBoard: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
@@ -19,13 +20,26 @@ const GameBoard: React.FC = () => {
     { x: 3, y: 5 },
   ]);
   const [pulse, setPulse] = useState<number>(1);
-  const scale = canvasSize / 30;
+  const GRID_SIZE = 30;
+  const scale = canvasSize / GRID_SIZE;
   const [isCountingDown, setIsCountingDown] = useState(true);
   const { addHighscore } = useAuth();
   const [lastMoveTime, setLastMoveTime] = useState<number>(0);
 
   const startGame = useCallback(() => {
     setIsCountingDown(false);
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    setTimeout(() => {
+      if (canvas) {
+        canvas.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'center',
+        });
+      }
+    }, 100);
   }, []);
 
   const [direction, setDirection] = useState<'UP' | 'DOWN' | 'LEFT' | 'RIGHT'>(
@@ -34,8 +48,8 @@ const GameBoard: React.FC = () => {
 
   const [foodPosition, setFoodPosition] = useState<{ x: number; y: number }>(
     () => ({
-      x: Math.floor(Math.random() * 30),
-      y: Math.floor(Math.random() * 30),
+      x: Math.floor(Math.random() * GRID_SIZE),
+      y: Math.floor(Math.random() * GRID_SIZE),
     })
   );
 
@@ -148,11 +162,10 @@ const GameBoard: React.FC = () => {
   };
 
   const generateFoodPosition = () => {
-    const gridSize = 30;
     const allPositions = [];
 
-    for (let x = 0; x < gridSize; x++) {
-      for (let y = 0; y < gridSize; y++) {
+    for (let x = 0; x < GRID_SIZE; x++) {
+      for (let y = 0; y < GRID_SIZE; y++) {
         allPositions.push({ x, y });
       }
     }
@@ -237,7 +250,7 @@ const GameBoard: React.FC = () => {
     const touchX = event.touches[0].clientX - rect.left;
     const touchY = event.touches[0].clientY - rect.top;
     const head = snake[0];
-    const scale = canvasSize / 30;
+    const scale = canvasSize / GRID_SIZE;
     const snakeX = head.x * scale + scale / 2;
     const snakeY = head.y * scale + scale / 2;
     const deltaX = touchX - snakeX;
@@ -263,17 +276,24 @@ const GameBoard: React.FC = () => {
             onPlayAgain={resetGame}
             onGoHome={navigateHome}
           />
-          <div className="score-display">Score: {score}</div>
-          <canvas
-            className="canvas-style"
-            ref={canvasRef}
-            onTouchStart={handleTouch}
-            style={{
-              width: `${canvasSize}px`,
-              height: `${canvasSize}px`,
-              touchAction: 'none',
-            }}
-          ></canvas>
+          <Card className="score-card">
+            <Card.Body className="d-flex justify-content-center">
+              <div>
+                <span className="score-label">Score:</span>
+                <span className="score-value ms-2">{score}</span>
+              </div>
+            </Card.Body>
+            <canvas
+              className="canvas-style"
+              ref={canvasRef}
+              onTouchStart={handleTouch}
+              style={{
+                width: `${canvasSize}px`,
+                height: `${canvasSize}px`,
+                touchAction: 'none',
+              }}
+            ></canvas>
+          </Card>
         </>
       )}
     </div>
