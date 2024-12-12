@@ -11,22 +11,26 @@ import Navigation from './pages/Navigation';
 import ProfilePage from './pages/ProfilePage';
 import GamePage from './pages/GamePage';
 import HighscorePage from './pages/HighscorePage';
+import Footer from './components/Footer';
 
 function App() {
   return (
     <div id="appId">
       <Navigation />
-      <Routes>
-        <Route path="/" element={<HomePage />} />
-        {/* Auth routes */}
-        <Route path="/signup" element={<SignupPage />} />
-        <Route path="/login" element={<LoginPage />} />
-        <Route path="/logout" element={<LogoutPage />} />
-        <Route path="/reset-password" element={<ResetPasswordPage />} />
-        <Route path="/profile" element={<ProfilePage />} />
-        <Route path="/game" element={<GamePage />} />
-        <Route path="/highscore" element={<HighscorePage />} />
-      </Routes>
+      <main>
+        <Routes>
+          <Route path="/" element={<HomePage />} />
+          {/* Auth routes */}
+          <Route path="/signup" element={<SignupPage />} />
+          <Route path="/login" element={<LoginPage />} />
+          <Route path="/logout" element={<LogoutPage />} />
+          <Route path="/reset-password" element={<ResetPasswordPage />} />
+          <Route path="/profile" element={<ProfilePage />} />
+          <Route path="/game" element={<GamePage />} />
+          <Route path="/highscore" element={<HighscorePage />} />
+        </Routes>
+      </main>
+      <Footer />
 
       <ToastContainer
         position="top-right"

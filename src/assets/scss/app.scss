@@ -67,9 +67,15 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
 #appId {
   min-height: 100vh;
   font-family: 'Jaro', sans-serif;
+  display: flex;
+  flex-direction: column;
   background-image: url('../images/snake background.jpg');
   background-size: cover;
   background-position: center;
+
+  main {
+    flex: 1;
+  }
 }
 
 #appId a {
@@ -116,6 +122,23 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
 
 .profile-card button:hover {
   color: #f3f3dd;
+}
+
+// Footer styling
+.custom-footer {
+  background-color: #0a355b;
+  color: #d1d1af;
+  padding: 15px 0;
+  font-size: 14px;
+
+  p {
+    margin: 0;
+    line-height: 1.6;
+  }
+
+  @media (max-width: 576px) {
+    font-size: 12px;
+  }
 }
 
 @import 'node_modules/bootstrap/scss/bootstrap';

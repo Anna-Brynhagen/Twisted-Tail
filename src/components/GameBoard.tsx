@@ -28,18 +28,6 @@ const GameBoard: React.FC = () => {
 
   const startGame = useCallback(() => {
     setIsCountingDown(false);
-    const canvas = canvasRef.current;
-    if (!canvas) return;
-
-    setTimeout(() => {
-      if (canvas) {
-        canvas.scrollIntoView({
-          behavior: 'smooth',
-          block: 'end',
-          inline: 'center',
-        });
-      }
-    }, 100);
   }, []);
 
   const [direction, setDirection] = useState<'UP' | 'DOWN' | 'LEFT' | 'RIGHT'>(
@@ -264,6 +252,23 @@ const GameBoard: React.FC = () => {
       else if (deltaY < 0 && direction !== 'DOWN') setDirection('UP');
     }
   };
+
+  useEffect(() => {
+    if (!isCountingDown) {
+      const canvas = canvasRef.current;
+      if (!canvas) return;
+
+      if (canvas) {
+        setTimeout(() => {
+          canvas.scrollIntoView({
+            behavior: 'smooth',
+            block: 'end',
+            inline: 'center',
+          });
+        }, 100);
+      }
+    }
+  }, [isCountingDown]);
 
   return (
     <div className="board-container">
