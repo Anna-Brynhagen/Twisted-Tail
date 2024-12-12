@@ -2,7 +2,7 @@ import { useNavigate } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
 import LoadingScreen from '../components/LoadingScreen';
 
-const LogoutPage: React.FC = () => {
+const LogoutPage = () => {
   const { logout } = useAuth();
   const navigate = useNavigate();
 

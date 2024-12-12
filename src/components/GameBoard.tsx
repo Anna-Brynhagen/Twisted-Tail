@@ -6,9 +6,9 @@ import { useNavigate } from 'react-router';
 import GameOverModal from './GameOverModal';
 import Countdown from './CountDown';
 import useAuth from '../hooks/useAuth';
-import { Card } from 'react-bootstrap';
+import Card from 'react-bootstrap/Card';
 
-const GameBoard: React.FC = () => {
+const GameBoard = () => {
   const canvasRef = useRef<HTMLCanvasElement | null>(null);
   const [canvasSize, setCanvasSize] = useState<number>(300);
   const navigate = useNavigate();

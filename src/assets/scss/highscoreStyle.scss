@@ -1,5 +1,25 @@
 .highscore-page h1 {
+  color: #148a88;
+  font-size: 3rem;
+  text-shadow: 0 0 5px #1c1a1f;
+}
+
+.table.highscore-table tbody tr {
+  background-color: #0b282a !important;
+}
+
+.table.highscore-table thead th {
+  background-color: #0b282a;
   color: #ffeeba;
+  font-size: 1.3rem;
+  font-weight: lighter;
+}
+
+.highscore-table tbody td {
+  color: #ffeeba !important;
+  font-size: 1.1rem;
+  background-color: #0b282a;
+  font-family: 'Courier New', Courier, monospace;
 }
 
 .shadow-sm {

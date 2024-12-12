@@ -1,20 +1,18 @@
 @import 'bootstrap/scss/bootstrap';
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap');
-$theme-colors: (
-  'primary': #0a355b,
-  'secondary': #d1d1af,
-  'dark': #42354c,
-  'light': #f4f4f4,
-  'success': #8c2039,
-  'danger': #eb9690,
-  'warning': #156e6d,
-  'muted': #757575,
-  'info': #0a355bdb,
-);
 
-$modal-content-bg: map-get($theme-colors, 'primary');
-$modal-content-color: map-get($theme-colors, 'secondary');
-$modal-footer-bg: map-get($theme-colors, 'primary');
+$primary-color: #0b282a;
+$secondary-color: #d1d1af;
+$info-color: #0b282ae0;
+$warning-color: #b92e4a;
+$success-color: #8c2039;
+$muted-color: #757575;
+$dark-color: #1c1a1f;
+$light-color: #f4f4f4;
+
+$modal-content-bg: $primary-color;
+$modal-content-color: $secondary-color;
+$modal-footer-bg: $primary-color;
 
 .custom-modal .modal-content {
   border-radius: 0.625rem;
@@ -22,11 +20,19 @@ $modal-footer-bg: map-get($theme-colors, 'primary');
   text-align: center;
   font-family: 'Jaro', sans-serif;
   font-size: 1.5rem;
+  box-shadow: 0 0 20px 20px rgba(181, 42, 42, 0.601);
 }
 
 .custom-modal button {
   width: 40%;
   padding: 0.625rem;
+  background-color: $success-color;
+  color: $secondary-color;
+  border: none;
+}
+
+.custom-modal button:hover {
+  background-color: lighten($warning-color, 10%);
 }
 
 .custom-modal .modal-header {
@@ -34,10 +40,10 @@ $modal-footer-bg: map-get($theme-colors, 'primary');
 }
 
 .custom-modal .modal-title {
-  font-size: 2.3rem;
+  font-size: 3rem;
   font-weight: bold;
   margin: 0 auto;
-  color: #bc0b34;
+  color: $warning-color;
 }
 
 .custom-modal .modal-footer {

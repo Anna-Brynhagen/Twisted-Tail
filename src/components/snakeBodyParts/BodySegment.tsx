@@ -14,19 +14,19 @@ const BodySegment: React.FC<BodySegmentProps> = ({
   ctx.fillStyle = '#092437';
   ctx.fillRect(segment.x * scale, segment.y * scale, scale, scale);
 
-  // Rita diamantformen med pulserande effekt
+  // Diamond with pulsating effect
   ctx.fillStyle = `rgba(182, 79, 76, ${pulse})`;
   ctx.beginPath();
   const centerX = segment.x * scale + scale / 2;
   const centerY = segment.y * scale + scale / 2;
-  const diamondWidth = scale / 3; // Diamantens bredd
-  const diamondHeight = scale / 3; // Diamantens höjd
+  const diamondWidth = scale / 3;
+  const diamondHeight = scale / 3;
 
-  // Diamantens fyra hörn
-  ctx.moveTo(centerX, centerY - diamondHeight / 2); // Övre spets
-  ctx.lineTo(centerX + diamondWidth / 2, centerY); // Höger spets
-  ctx.lineTo(centerX, centerY + diamondHeight / 2); // Nedre spets
-  ctx.lineTo(centerX - diamondWidth / 2, centerY); // Vänster spets
+  // Diamonds four corners
+  ctx.moveTo(centerX, centerY - diamondHeight / 2);
+  ctx.lineTo(centerX + diamondWidth / 2, centerY);
+  ctx.lineTo(centerX, centerY + diamondHeight / 2);
+  ctx.lineTo(centerX - diamondWidth / 2, centerY);
   ctx.closePath();
   ctx.fill();
 

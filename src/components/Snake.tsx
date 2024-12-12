@@ -12,10 +12,10 @@ const Snake = {
   ) => {
     segments.forEach((segment, index) => {
       if (index === 0) {
-        // Huvudet
+        // head
         ctx.fillStyle = '#092437';
         ctx.fillRect(segment.x * scale, segment.y * scale, scale, scale);
-        // Ögon
+        // eyes
         SnakeEyes({
           ctx,
           segment,
@@ -23,7 +23,7 @@ const Snake = {
           scale,
         });
       } else if (index === segments.length - 1) {
-        // Svansen
+        // tail
         Tail({
           ctx,
           scale,
@@ -31,7 +31,7 @@ const Snake = {
           secondLastSegment: segments[index - 1],
         });
       } else {
-        // Resten av kroppen
+        // body
         BodySegment({
           ctx,
           scale,

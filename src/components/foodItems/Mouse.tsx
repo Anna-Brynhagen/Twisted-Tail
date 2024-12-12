@@ -5,26 +5,26 @@ const Mouse = {
     y: number,
     scale: number
   ) => {
-    // Musens kropp
+    // Mouse body
     ctx.fillStyle = 'gray';
     ctx.beginPath();
     ctx.arc(x, y, scale / 4, 0, 2 * Math.PI);
     ctx.fill();
 
-    // Öron
+    // ears
     ctx.beginPath();
     ctx.arc(x - scale / 5, y - scale / 5, scale / 6, 0, 2 * Math.PI);
     ctx.arc(x + scale / 5, y - scale / 5, scale / 6, 0, 2 * Math.PI);
     ctx.fill();
 
-    // Ögon
+    // eyes
     ctx.fillStyle = 'black';
     ctx.beginPath();
     ctx.arc(x - scale / 10, y - scale / 12, scale / 25, 0, 2 * Math.PI);
     ctx.arc(x + scale / 10, y - scale / 12, scale / 25, 0, 2 * Math.PI);
     ctx.fill();
 
-    // Nos
+    // nose
     ctx.fillStyle = 'pink';
     ctx.beginPath();
     ctx.arc(x, y + scale / 15, scale / 20, 0, 2 * Math.PI);

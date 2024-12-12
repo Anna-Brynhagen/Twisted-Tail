@@ -7,33 +7,39 @@
 @import './profilePageStyle.scss';
 
 $theme-colors: (
-  'primary': #0a355b,
+  'primary': #0b282a,
   'secondary': #d1d1af,
-  'dark': #1c1a1f,
-  'light': #f4f4f4,
+  'info': #0b282ae0,
+  'warning': #7a2438,
   'success': #8c2039,
-  'danger': #eb9690,
-  'warning': #156e6d,
-  'muted': #757575,
-  'info': #0a355be0,
+  'light': #ac3131,
+  'dark': #1c1a1f,
 );
 
-$card-bg: map-get($theme-colors, 'info');
-$card-color: map-get($theme-colors, 'secondary');
-$navbar-dark-bg: map-get($theme-colors, 'primary');
-$navbar-dark-color: map-get($theme-colors, 'secondary');
-$navbar-dark-hover-color: map-get($theme-colors, 'warning');
+$primary-color: #0b282a;
+$secondary-color: #d1d1af;
+$info-color: #0b282ae0;
+$warning-color: #89548f;
+$success-color: #8c2039;
+$muted-color: #757575;
+$dark-color: #1c1a1f;
+$light-color: #f4f4f4;
+
+$card-bg: $info-color;
+$card-color: $secondary-color;
+$btn-bg: $warning-color;
+
 //Navbar
 .navBar {
-  background-color: $navbar-dark-bg;
+  background-color: $primary-color;
   height: 6rem;
   font-size: 1.2rem;
   position: relative;
-  margin-bottom: 20px;
+  margin-bottom: 1.25rem;
 
   .navbar-collapse {
     z-index: 1049;
-    background-color: $navbar-dark-bg;
+    background-color: $primary-color;
   }
 
   .collapse-links {
@@ -42,25 +48,25 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
   }
 
   .navbar-toggler {
-    background-color: lighten($navbar-dark-bg, 5%);
+    background-color: lighten($primary-color, 5%);
     border: 1px solid $navbar-dark-color;
     transition:
       background-color 0.3s ease,
       border-color 0.3s ease;
     &:hover {
-      background-color: lighten($navbar-dark-hover-color, 10%);
+      background-color: lighten($warning-color, 10%);
     }
     &:focus,
     &:active {
       border-color: $navbar-dark-color;
-      background-color: lighten($navbar-dark-bg, 10%);
+      background-color: lighten($primary-color, 10%);
       box-shadow: 0 0 0 0.2rem rgba(155, 70, 31, 0.5);
     }
   }
 
   .navbar-brand {
     color: $navbar-dark-color;
-    font-size: 40px;
+    font-size: 2.5rem;
   }
 }
 
@@ -70,7 +76,8 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
   font-family: 'Jaro', sans-serif;
   display: flex;
   flex-direction: column;
-  background-image: url('../images/snake background.jpg');
+  position: relative;
+  background-image: url('../images/snake.jpg');
   background-size: cover;
   background-position: center;
 
@@ -79,8 +86,24 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
   }
 }
 
+#appId::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1;
+}
+
+#appId > * {
+  position: relative;
+  z-index: 2;
+}
+
 #appId a {
-  color: #d1d1af;
+  color: $secondary-color;
   text-decoration: none;
 }
 
@@ -101,10 +124,10 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
 
 // Footer styling
 .custom-footer {
-  background-color: #0a355b;
-  color: #d1d1af;
+  background-color: $primary-color;
+  color: $secondary-color;
   padding: 15px 0;
-  font-size: 14px;
+  font-size: 0.875rem;
 
   p {
     margin: 0;
@@ -112,15 +135,15 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
   }
 
   @media (max-width: 576px) {
-    font-size: 12px;
+    font-size: 0.75rem;
   }
 }
 
 //Not found styling
 .not-found-card {
-  border-radius: 20px;
+  border-radius: 1.25rem;
   overflow: hidden;
-  max-width: 600px;
+  max-width: 37.5rem;
 }
 
 @import 'node_modules/bootstrap/scss/bootstrap';

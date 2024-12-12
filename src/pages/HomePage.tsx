@@ -1,7 +1,7 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import ArrowKeysCanvas from '../components/ArrowKeysCanvas';
 
-const HomePage: React.FC = () => {
+const HomePage = () => {
   return (
     <Container className="homePage-container center-y">
       <Row className="mb-4">
@@ -37,7 +37,8 @@ const HomePage: React.FC = () => {
         <Col xs={12} lg={6} className="mb-4">
           <Card className="shadow h-100">
             <Card.Body className="text-center">
-              <h3 className="h3-title mb-4">Move with these keys:</h3>
+              <h3 className="h3-title">Move with these keys:</h3>
+              <h4 className="mb-4">Give it a try!</h4>
               <ArrowKeysCanvas />
               <p className="game-description mt-4">
                 Want to show off your highscore?

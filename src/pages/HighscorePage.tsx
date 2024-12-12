@@ -4,7 +4,7 @@ import useGetUsersInfo from '../hooks/useGetUsersInfo';
 import { ViewUserData } from '../types/User.types';
 import useAuth from '../hooks/useAuth';
 
-const HighscorePage: React.FC = () => {
+const HighscorePage = () => {
   const { data: users, loading } = useGetUsersInfo();
   const { currentUser } = useAuth();
 

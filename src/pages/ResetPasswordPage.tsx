@@ -3,12 +3,12 @@ import { ForgotPasswordData } from '../types/User.types';
 import { toast } from 'react-toastify';
 import { useForm, SubmitHandler } from 'react-hook-form';
 import { useState } from 'react';
-import Button from 'react-bootstrap/esm/Button';
-import Card from 'react-bootstrap/esm/Card';
-import Col from 'react-bootstrap/esm/Col';
-import Container from 'react-bootstrap/esm/Container';
-import Form from 'react-bootstrap/esm/Form';
-import Row from 'react-bootstrap/esm/Row';
+import Button from 'react-bootstrap/Button';
+import Card from 'react-bootstrap/Card';
+import Col from 'react-bootstrap/Col';
+import Container from 'react-bootstrap/Container';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 import useAuth from '../hooks/useAuth';
 
 const ForgotPassword = () => {

@@ -1,6 +1,6 @@
 import { useEffect, useRef } from 'react';
 
-const ArrowKeysCanvas: React.FC = () => {
+const ArrowKeysCanvas = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const pressedKey = useRef<string | null>(null);
 
@@ -35,7 +35,7 @@ const ArrowKeysCanvas: React.FC = () => {
     ];
 
     keys.forEach((key) => {
-      ctx.fillStyle = pressedKey.current === key.key ? '#ff4d4d' : '#ddd';
+      ctx.fillStyle = pressedKey.current === key.key ? '#28a745' : '#ccc';
       ctx.fillRect(key.x, key.y, keySize, keySize);
       ctx.strokeStyle = '#333';
       ctx.lineWidth = 2;
