@@ -12,6 +12,7 @@ import ProfilePage from './pages/ProfilePage';
 import GamePage from './pages/GamePage';
 import HighscorePage from './pages/HighscorePage';
 import Footer from './components/Footer';
+import NotFoundPage from './pages/NotFoundPage';
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <main>
         <Routes>
           <Route path="/" element={<HomePage />} />
+          <Route path="*" element={<NotFoundPage />} />
           {/* Auth routes */}
           <Route path="/signup" element={<SignupPage />} />
           <Route path="/login" element={<LoginPage />} />

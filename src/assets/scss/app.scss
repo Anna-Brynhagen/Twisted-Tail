@@ -3,7 +3,8 @@
 @import './gameStyle.scss';
 @import './gameOverStyle.scss';
 @import './highscoreStyle.scss';
-@import './Homepage.scss';
+@import './homePageStyle.scss';
+@import './profilePageStyle.scss';
 
 $theme-colors: (
   'primary': #0a355b,
@@ -98,32 +99,6 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
   padding: 1.875rem 0;
 }
 
-//profile page
-.profile-photo {
-  width: 12.5rem;
-  height: 12.5rem;
-  border: 2px solid #ddd;
-  border-radius: 0.938rem;
-  overflow: hidden;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-  background-color: #f8f9fa;
-}
-
-.profile-card input {
-  border: 1px solid #0a355bdb;
-  background-color: #eaeadd;
-  color: #0a355bdb;
-  font-size: 1.125rem;
-}
-
-.profile-card button {
-  color: #d1d1af;
-}
-
-.profile-card button:hover {
-  color: #f3f3dd;
-}
-
 // Footer styling
 .custom-footer {
   background-color: #0a355b;
@@ -139,6 +114,13 @@ $navbar-dark-hover-color: map-get($theme-colors, 'warning');
   @media (max-width: 576px) {
     font-size: 12px;
   }
+}
+
+//Not found styling
+.not-found-card {
+  border-radius: 20px;
+  overflow: hidden;
+  max-width: 600px;
 }
 
 @import 'node_modules/bootstrap/scss/bootstrap';

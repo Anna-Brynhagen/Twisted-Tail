@@ -1,0 +1,24 @@
+.profile-photo {
+  width: 12.5rem;
+  height: 12.5rem;
+  border: 2px solid #ddd;
+  border-radius: 0.938rem;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  background-color: #f8f9fa;
+}
+
+.profile-card input {
+  border: 1px solid #0a355bdb;
+  background-color: #eaeadd;
+  color: #0a355bdb;
+  font-size: 1.125rem;
+}
+
+.profile-card button {
+  color: #d1d1af;
+}
+
+.profile-card button:hover {
+  color: #f3f3dd;
+}
