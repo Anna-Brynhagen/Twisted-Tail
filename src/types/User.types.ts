@@ -18,6 +18,7 @@ export type ViewUserData = {
   email: string;
   photo: string;
   highscores: [];
+  uid: string;
 };
 
 export type UpdateProfileData = {

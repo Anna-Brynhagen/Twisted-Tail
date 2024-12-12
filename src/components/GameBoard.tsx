@@ -226,8 +226,8 @@ const GameBoard: React.FC = () => {
     generateFoodPosition();
   };
 
-  const navigateHome = () => {
-    navigate('/');
+  const navigateToHighScore = () => {
+    navigate('/highscore');
   };
 
   const handleTouch = (event: React.TouchEvent<HTMLCanvasElement>) => {
@@ -279,7 +279,7 @@ const GameBoard: React.FC = () => {
             show={isGameOver}
             score={score}
             onPlayAgain={resetGame}
-            onGoHome={navigateHome}
+            onGoToHighscores={navigateToHighScore}
           />
           <Card className="score-card">
             <Card.Body className="d-flex justify-content-center">

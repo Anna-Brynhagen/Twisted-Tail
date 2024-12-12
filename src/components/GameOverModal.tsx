@@ -5,35 +5,30 @@ interface GameOverModalProps {
   show: boolean;
   score: number;
   onPlayAgain: () => void;
-  onGoHome: () => void;
+  onGoToHighscores: () => void;
 }
 
 const GameOverModal: React.FC<GameOverModalProps> = ({
   show,
   score,
   onPlayAgain,
-  onGoHome,
+  onGoToHighscores,
 }) => {
   return (
-    <Modal
-      show={show}
-      onHide={onGoHome}
-      centered
-      dialogClassName="custom-modal"
-    >
+    <Modal show={show} centered dialogClassName="custom-modal">
       <Modal.Header>
         <Modal.Title>Game Over</Modal.Title>
       </Modal.Header>
       <Modal.Body>
         <p>Your score: {score}</p>
-        <p>Do you want to play again or go home?</p>
+        <p>Do you want to play again or check out the highscores?</p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="warning" onClick={onPlayAgain}>
           Play Again
         </Button>
-        <Button variant="warning" onClick={onGoHome}>
-          Go Home
+        <Button variant="warning" onClick={onGoToHighscores}>
+          Highscores
         </Button>
       </Modal.Footer>
     </Modal>

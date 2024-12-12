@@ -21,7 +21,7 @@ const useStreamCollection = <T>(
       (snapshot) => {
         const fetchedData = snapshot.docs.map((doc) => ({
           ...doc.data(),
-          id: doc.id,
+          uid: doc.id,
         })) as T[];
 
         setData(fetchedData);

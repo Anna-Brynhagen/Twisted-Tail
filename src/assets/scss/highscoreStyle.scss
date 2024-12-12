@@ -1,8 +1,3 @@
-//highscore Page
-.highscore-page {
-  padding: 1.25rem;
-}
-
 .highscore-page h1 {
   color: #ffeeba;
 }
@@ -29,4 +24,12 @@
   justify-content: center;
   font-size: 1rem;
   font-weight: bold;
+}
+
+.current-user-highscore {
+  color: #ffeeba;
+}
+
+.user-score {
+  color: #28a745;
 }

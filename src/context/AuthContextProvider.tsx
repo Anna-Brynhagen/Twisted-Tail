@@ -57,6 +57,7 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
         name: user.displayName || '',
         photo: user.photoURL || '',
         highscores: [],
+        uid: user.uid,
       });
 
       console.log('User document successfully created in Firestore');
