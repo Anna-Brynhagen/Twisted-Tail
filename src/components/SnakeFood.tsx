@@ -1,8 +1,10 @@
 import Apple from './foodItems/Apple';
 import Banana from './foodItems/Banana';
 import Mouse from './foodItems/Mouse';
+import GreenApple from './foodItems/GreenApple';
+import BrownMouse from './foodItems/BrownMouse';
 
-const FoodTypes = [Apple, Banana, Mouse];
+const FoodTypes = [Apple, Banana, Mouse, GreenApple, BrownMouse];
 let currentFoodType = FoodTypes[0];
 
 const SnakeFood = {

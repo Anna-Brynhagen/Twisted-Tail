@@ -20,7 +20,7 @@ $modal-footer-bg: $primary-color;
   text-align: center;
   font-family: 'Jaro', sans-serif;
   font-size: 1.5rem;
-  box-shadow: 0 0 20px 20px rgba(181, 42, 42, 0.601);
+  box-shadow: 0 0 20px 20px rgba(181, 42, 42, 0.451);
 }
 
 .custom-modal button {
@@ -50,6 +50,15 @@ $modal-footer-bg: $primary-color;
   border-top: none;
   display: flex;
   justify-content: space-evenly;
+}
+
+.score-span {
+  color: #28a745;
+  font-size: 3rem;
+}
+
+.score-text {
+  font-size: 2rem;
 }
 
 @import 'node_modules/bootstrap/scss/bootstrap';

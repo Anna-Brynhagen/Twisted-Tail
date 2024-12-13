@@ -14,7 +14,7 @@ interface LoadingScreenProps {
 
 const LoadingScreen: React.FC<LoadingScreenProps> = ({
   message = 'Loading...',
-  color = '#4d0011',
+  color = '#c96fb7',
   minimumDelay = 1000,
   onComplete,
 }) => {

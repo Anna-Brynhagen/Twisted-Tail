@@ -59,8 +59,6 @@ const AuthContextProvider: React.FC<PropsWithChildren> = ({ children }) => {
         highscores: [],
         uid: user.uid,
       });
-
-      console.log('User document successfully created in Firestore');
       return userCredential;
     } catch (error) {
       console.error('Error during signup:', error);

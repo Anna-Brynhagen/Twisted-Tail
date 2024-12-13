@@ -164,7 +164,6 @@ const GameBoard = () => {
     );
 
     if (availablePositions.length === 0) {
-      console.warn('No available positions for food!');
       return;
     }
 
@@ -182,15 +181,12 @@ const GameBoard = () => {
     window.addEventListener('keydown', handleKeyDown);
     let snakeInterval: NodeJS.Timeout | null = null;
     if (!isGameOver) {
-      console.log('Starting snake update interval');
       snakeInterval = setInterval(() => {
-        console.log('Updating snake position');
         updateSnakePosition();
         updatePulse();
       }, 200);
     }
     return () => {
-      console.log('Cleaning up');
       window.removeEventListener('resize', resizeCanvas);
       window.removeEventListener('keydown', handleKeyDown);
       if (snakeInterval) {

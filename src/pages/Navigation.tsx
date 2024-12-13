@@ -3,6 +3,9 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import { Link } from 'react-router-dom';
 import useAuth from '../hooks/useAuth';
+import { BoxArrowRight } from 'react-bootstrap-icons';
+import { BoxArrowInRight } from 'react-bootstrap-icons';
+import { PersonPlus } from 'react-bootstrap-icons';
 
 const Navigation = () => {
   const { currentUser } = useAuth();
@@ -28,21 +31,24 @@ const Navigation = () => {
                   Profile
                 </Nav.Link>
                 <Nav.Link as={Link} to="/logout">
+                  <BoxArrowRight className="me-2" />
                   Logout
                 </Nav.Link>
               </div>
             ) : (
               <div className="collapse-links">
-                <Nav.Link as={Link} to="/login">
-                  Login
-                </Nav.Link>
                 <Nav.Link as={Link} to="/game">
                   Play
                 </Nav.Link>
                 <Nav.Link as={Link} to="/highscore">
                   Highscore
                 </Nav.Link>
+                <Nav.Link as={Link} to="/login">
+                  <BoxArrowInRight className="me-2" />
+                  Login
+                </Nav.Link>
                 <Nav.Link as={Link} to="/signup">
+                  <PersonPlus className="me-2" />
                   Sign Up
                 </Nav.Link>
               </div>

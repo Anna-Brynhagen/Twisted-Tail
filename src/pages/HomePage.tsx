@@ -1,7 +1,9 @@
 import { Container, Row, Col, Card } from 'react-bootstrap';
 import ArrowKeysCanvas from '../components/ArrowKeysCanvas';
+import useAuth from '../hooks/useAuth';
 
 const HomePage = () => {
+  const { currentUser } = useAuth();
   return (
     <Container className="homePage-container center-y">
       <Row className="mb-4">
@@ -38,12 +40,24 @@ const HomePage = () => {
           <Card className="shadow h-100">
             <Card.Body className="text-center">
               <h3 className="h3-title">Move with these keys:</h3>
-              <h4 className="mb-4">Give it a try!</h4>
+              <h4 className="mb-4">Try it out!</h4>
               <ArrowKeysCanvas />
-              <p className="game-description mt-4">
-                Want to show off your highscore?
-              </p>
-              <a href="/signup">Simply create an account.</a>
+              {/* Villkorlig rendering baserat på inloggning */}
+              {!currentUser ? (
+                <>
+                  <p className="game-description mt-4">
+                    Want to show off your highscore?
+                  </p>
+                  <a href="/signup">Simply create an account.</a>
+                </>
+              ) : (
+                <>
+                  <p className="game-description mt-4">
+                    Check out your highscore!
+                  </p>
+                  <a href="/highscore">Go to Leaderboard</a>
+                </>
+              )}
             </Card.Body>
           </Card>
         </Col>

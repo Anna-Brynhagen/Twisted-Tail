@@ -136,7 +136,7 @@ const UpdateProfile = () => {
     <Container fluid className="py-3 center-y">
       <Row className="justify-content-center">
         <Col xs={12} sm={10} md={8} lg={6} xl={5}>
-          <Card className="shadow-lg">
+          <Card className="shadow-lg mb-3">
             <Card.Body className="profile-card">
               <div className="text-center mb-2">
                 <div className="profile-photo d-flex justify-content-center align-items-center mx-auto">

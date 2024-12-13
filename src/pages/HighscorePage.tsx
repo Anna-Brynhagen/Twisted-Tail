@@ -28,11 +28,11 @@ const HighscorePage = () => {
     : null;
 
   return (
-    <Container className="highscore-page mt-4 mb-4">
+    <Container className="highscore-page mt-4 mb-5">
       {loading ? (
         <LoadingScreen
           message="Fetching Highscores..."
-          color="#4d0011"
+          color="#c96fb7"
           minimumDelay={1000}
         />
       ) : (

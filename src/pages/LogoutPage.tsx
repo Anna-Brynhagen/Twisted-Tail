@@ -14,7 +14,7 @@ const LogoutPage = () => {
   return (
     <LoadingScreen
       message="Signing out..."
-      color="#4d0011"
+      color="#c96fb7"
       onComplete={handleComplete}
     />
   );

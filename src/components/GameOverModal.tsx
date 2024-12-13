@@ -20,8 +20,10 @@ const GameOverModal: React.FC<GameOverModalProps> = ({
         <Modal.Title>Game Over</Modal.Title>
       </Modal.Header>
       <Modal.Body>
-        <p>Your score: {score}</p>
-        <p>Do you want to play again or check out the highscores?</p>
+        <p className="score-text">
+          You scored: <br />
+          <span className="score-span">{score}</span>
+        </p>
       </Modal.Body>
       <Modal.Footer>
         <Button variant="warning" onClick={onPlayAgain}>
