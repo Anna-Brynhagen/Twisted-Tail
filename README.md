@@ -1,50 +1,69 @@
-# React + TypeScript + Vite
+# Twisted Tail - A Modern Snake Game 🐍
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Twisted Tail is a web-based application that brings the classic **Snake** game into a modern and interactive environment. Users can play the game, track their high scores, manage their profiles, and experience smooth gameplay with a clean interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Table of Contents
 
-## Expanding the ESLint configuration
+- [About the Project](#about-the-project)
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Installation](#installation)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+---
 
-- Configure the top-level `parserOptions` property like this:
+## About the Project 🎯
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+The project aims to create an engaging, user-friendly version of the **Snake** game, enhanced with modern features like user authentication, profile management, and a real-time highscore leaderboard. All data, including scores and user profiles, is securely stored in **Firebase Realtime Database**.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+## Features 🚀
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+### **Core Features**
+
+1. **User Accounts and Profiles**
+
+   - Register, log in, and log out.
+   - Update username, password, and profile picture.
+
+2. **Game Functionality**
+
+   - Classic Snake gameplay: eat items to grow the snake and avoid collisions with self or wall.
+   - Smooth and responsive controls using keyboard inputs.
+
+3. **Highscore Leaderboard**
+   - Scores are saved in **Firebase Realtime Database**.
+   - Public leaderboard displays top scores and player information.
+   - Users can see their personal best score, even if it’s not in the top rankings.
+
+---
+
+## Technologies Used 🛠️
+
+- **React**
+- **TypeScript**
+- **Vite**
+- **Firebase**
+- **SCSS**
+- **ESLint**
+
+---
+
+## Installation 🧰
+
+Follow these steps to set up the project locally:
+
+1. **Clone the repository**:
+   ```bash
+   git clone https://github.com/your-github-username/twisted-tail.git
+   cd twisted-tail
+   npm install
+   Set up Firebase:
+   Create a Firebase project.
+   Set up Firebase Authentication and Realtime Database.
+   Add your Firebase configuration to the project and your api keys in a .env file.
+   Start the development server:
+   npm run dev
+   ```
