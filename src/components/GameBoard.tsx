@@ -36,9 +36,10 @@ const GameBoard = () => {
 
   const getValidFoodPosition = (
     snake: { x: number; y: number }[],
-    direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'
+    direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT',
+    GRID_SIZE: number
   ): { x: number; y: number } => {
-    let newPosition: { x: number; y: number } = { x: 0, y: 0 };
+    let newPosition: { x: number; y: number } = { x: -1, y: -1 };
     let isInvalidPosition = true;
 
     const head = snake[0];
@@ -65,15 +66,7 @@ const GameBoard = () => {
   };
 
   const [foodPosition, setFoodPosition] = useState<{ x: number; y: number }>(
-    () =>
-      getValidFoodPosition(
-        [
-          { x: 5, y: 5 },
-          { x: 4, y: 5 },
-          { x: 3, y: 5 },
-        ],
-        'RIGHT'
-      )
+    () => getValidFoodPosition(snake, 'RIGHT', GRID_SIZE)
   );
 
   const resizeCanvas = () => {
@@ -181,7 +174,7 @@ const GameBoard = () => {
   };
 
   const generateFoodPosition = () => {
-    const newPosition = getValidFoodPosition(snake, direction);
+    const newPosition = getValidFoodPosition(snake, direction, GRID_SIZE);
     setFoodPosition(newPosition);
     SnakeFood.generateNewFood();
   };
