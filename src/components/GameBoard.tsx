@@ -34,11 +34,46 @@ const GameBoard = () => {
     'RIGHT'
   );
 
+  const getValidFoodPosition = (
+    snake: { x: number; y: number }[],
+    direction: 'UP' | 'DOWN' | 'LEFT' | 'RIGHT'
+  ): { x: number; y: number } => {
+    let newPosition: { x: number; y: number } = { x: 0, y: 0 };
+    let isInvalidPosition = true;
+
+    const head = snake[0];
+    const forbiddenPosition = {
+      x: head.x + (direction === 'LEFT' ? -1 : direction === 'RIGHT' ? 1 : 0),
+      y: head.y + (direction === 'UP' ? -1 : direction === 'DOWN' ? 1 : 0),
+    };
+
+    while (isInvalidPosition) {
+      newPosition = {
+        x: Math.floor(Math.random() * GRID_SIZE),
+        y: Math.floor(Math.random() * GRID_SIZE),
+      };
+
+      isInvalidPosition =
+        snake.some(
+          (segment) =>
+            segment.x === newPosition.x && segment.y === newPosition.y
+        ) ||
+        (newPosition.x === forbiddenPosition.x &&
+          newPosition.y === forbiddenPosition.y);
+    }
+    return newPosition;
+  };
+
   const [foodPosition, setFoodPosition] = useState<{ x: number; y: number }>(
-    () => ({
-      x: Math.floor(Math.random() * GRID_SIZE),
-      y: Math.floor(Math.random() * GRID_SIZE),
-    })
+    () =>
+      getValidFoodPosition(
+        [
+          { x: 5, y: 5 },
+          { x: 4, y: 5 },
+          { x: 3, y: 5 },
+        ],
+        'RIGHT'
+      )
   );
 
   const resizeCanvas = () => {
@@ -127,10 +162,6 @@ const GameBoard = () => {
     });
   };
 
-  const updatePulse = () => {
-    setPulse((prev) => (prev > 0.2 ? prev - 0.05 : 1));
-  };
-
   const drawBoardAndSnake = () => {
     const canvas = canvasRef.current;
     if (!canvas) return;
@@ -150,26 +181,7 @@ const GameBoard = () => {
   };
 
   const generateFoodPosition = () => {
-    const allPositions = [];
-
-    for (let x = 0; x < GRID_SIZE; x++) {
-      for (let y = 0; y < GRID_SIZE; y++) {
-        allPositions.push({ x, y });
-      }
-    }
-
-    const availablePositions = allPositions.filter(
-      (pos) =>
-        !snake.some((segment) => segment.x === pos.x && segment.y === pos.y)
-    );
-
-    if (availablePositions.length === 0) {
-      return;
-    }
-
-    const newPosition =
-      availablePositions[Math.floor(Math.random() * availablePositions.length)];
-
+    const newPosition = getValidFoodPosition(snake, direction);
     setFoodPosition(newPosition);
     SnakeFood.generateNewFood();
   };
@@ -183,7 +195,7 @@ const GameBoard = () => {
     if (!isGameOver) {
       snakeInterval = setInterval(() => {
         updateSnakePosition();
-        updatePulse();
+        setPulse((prev) => (prev > 0.2 ? prev - 0.05 : 1));
       }, 200);
     }
     return () => {
@@ -250,19 +262,14 @@ const GameBoard = () => {
   };
 
   useEffect(() => {
-    if (!isCountingDown) {
-      const canvas = canvasRef.current;
-      if (!canvas) return;
-
-      if (canvas) {
-        setTimeout(() => {
-          canvas.scrollIntoView({
-            behavior: 'smooth',
-            block: 'end',
-            inline: 'center',
-          });
-        }, 100);
-      }
+    if (!isCountingDown && canvasRef.current) {
+      setTimeout(() => {
+        canvasRef.current?.scrollIntoView({
+          behavior: 'smooth',
+          block: 'end',
+          inline: 'center',
+        });
+      }, 100);
     }
   }, [isCountingDown]);
 
