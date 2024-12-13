@@ -60,10 +60,10 @@ Follow these steps to set up the project locally:
    git clone https://github.com/your-github-username/twisted-tail.git
    cd twisted-tail
    npm install
+   npm run dev
+   ```
+2. **Firebase**:
    Set up Firebase:
    Create a Firebase project.
    Set up Firebase Authentication and Realtime Database.
    Add your Firebase configuration to the project and your api keys in a .env file.
-   Start the development server:
-   npm run dev
-   ```
